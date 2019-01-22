@@ -6,6 +6,9 @@ const { Nuxt, Builder } = require('nuxt')
 
 class NuxtController {
   constructor() {
+    if (process.env.NODE_NO_CLIENT) {
+      return
+    }
     const config = Config.get('nuxt')
     config.dev = Env.get('NODE_ENV') === 'development'
     this.nuxt = new Nuxt(config)

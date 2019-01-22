@@ -21,14 +21,9 @@ const { Ignitor } = require('@adonisjs/ignitor')
 
 const ignitor = new Ignitor(require('@adonisjs/fold')).appRoot(__dirname)
 
-if (process.env.NODE_NO_CLIENT) {
-  ignitor
-    .fireHttpServer()
-    .catch(/** console.error */)
-} else {
-  ignitor
-    .fireHttpServer(() => {
-      use('App/Controllers/Http/NuxtController')
-    })
-    .catch(/** console.error */)
-}
+new Ignitor(require('@adonisjs/fold'))
+  .appRoot(__dirname)
+  .fireHttpServer(() => {
+    use('App/Controllers/Http/NuxtController')
+  })
+  .catch(/** console.error */)
